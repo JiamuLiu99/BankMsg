@@ -1,2 +1,9 @@
 {% extends 'base.html' %}
-<h1>VIEW</h1>
+
+{% block header %}
+  <h1>{% block title %}View{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+<h3>List</h3>
+{% endblock %}
