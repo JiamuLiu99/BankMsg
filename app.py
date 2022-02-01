@@ -11,16 +11,18 @@ def index():
         return render_template("submit.html")
     else:
         try:
-            core.insert_message(request)
-            return render_template('submit.html', msg=request.form['message'], hdl=request.form['handle'])
+            rc = core.insert_message(request)
+            if rc:
+                return render_template('success.html' )
+            else:
+                return render_template('fail.html')
         except:
-            return render_template('error.html')
+            return render_template('fail.html')
 
 @app.route('/view/')
 def view_records():
     core.get_message_db()
-    return render_template('view.html')
-
+    return render_template('view.html', msg = core.random_messages(5))
 
 if __name__ == "__main__":
     app.run(debug = True)
