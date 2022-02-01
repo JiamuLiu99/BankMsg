@@ -6,11 +6,11 @@
 
 {% block content %}
 <h3>Some messages stored at Bank</h3>
-<table>
+<table id="tbl">
   <tr>
     <th>Id</th>
-    <th>Name</th>
     <th>Message</th>
+    <th>Commenter</th>
   </tr> 
 {% for m in msg %}
   <tr>
