@@ -31,8 +31,7 @@ def insert_message(request):
     conn = sqlite3.connect("./db/message_db.sqlite")
     cur = conn.cursor()
 
-    cur.execute("SELECT COUNT(*) FROM messages;")
-    maxId = cur.fetchone()
+    maxId = cur.execute("SELECT COUNT(*) FROM messages;").fetchone()
 
     msg = request.form['message']
     hdl = request.form['handle']  
@@ -52,3 +51,20 @@ def insert_message(request):
         conn.close()
 
         return False
+
+def random_messages(n):
+    conn = sqlite3.connect("./db/message_db.sqlite")
+    cur = conn.cursor()
+
+    cmd = \
+    f"""
+        SELECT *
+        FROM messages ORDER BY RANDOM() LIMIT {n};
+    """ 
+    rdm_msg = cur.execute(cmd).fetchall()
+    cur.close()
+
+    return rdm_msg
+
+
+

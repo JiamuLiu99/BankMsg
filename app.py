@@ -22,8 +22,7 @@ def index():
 @app.route('/view/')
 def view_records():
     core.get_message_db()
-    return render_template('view.html')
-
+    return render_template('view.html', msg = core.random_messages(5))
 
 if __name__ == "__main__":
     app.run(debug = True)

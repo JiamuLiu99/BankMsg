@@ -5,5 +5,20 @@
 {% endblock %}
 
 {% block content %}
-<h3>List</h3>
+<h3>Some messages stored at Bank</h3>
+<table>
+  <tr>
+    <th>Id</th>
+    <th>Name</th>
+    <th>Message</th>
+  </tr> 
+{% for m in msg %}
+  <tr>
+    <td>{{m[0]}}</td>
+    <td>{{m[1]}}</td>
+    <td>{{m[2]}}</td>
+  </tr>
+{% endfor%}
+</table>
+<p></p>
 {% endblock %}
