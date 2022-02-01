@@ -11,10 +11,13 @@ def index():
         return render_template("submit.html")
     else:
         try:
-            core.insert_message(request)
-            return render_template('submit.html', msg=request.form['message'], hdl=request.form['handle'])
+            rc = core.insert_message(request)
+            if rc:
+                return render_template('success.html' )
+            else:
+                return render_template('fail.html')
         except:
-            return render_template('error.html')
+            return render_template('fail.html')
 
 @app.route('/view/')
 def view_records():
